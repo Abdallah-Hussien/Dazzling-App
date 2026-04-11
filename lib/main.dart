@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'dazzling_app.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const DazzlingApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dazzling',
-      home: const Center(
-        child: Text('Dazzling, Comming Soon......!'),
-      ),
-    );
-  }
-}
 
