@@ -24,7 +24,10 @@ class AppRouter {
       case RoutesNames.register:
         return MaterialPageRoute(builder: (context) => const RegisterScreen());
       case RoutesNames.home:
-        return MaterialPageRoute(builder: (context) => const HomeScreen());
+        return MaterialPageRoute(builder: (context) {
+          final name = settings.arguments as String? ?? "guest";
+           return HomeScreen(name: name);
+        });
       default:
         return null;
     }

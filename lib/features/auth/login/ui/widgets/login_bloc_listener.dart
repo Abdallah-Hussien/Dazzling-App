@@ -3,6 +3,7 @@ import 'package:dazzling/core/widgets/loading_layout.dart';
 import 'package:dazzling/features/auth/login/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../logic/cubit/login_cubit.dart';
 
@@ -19,7 +20,12 @@ class LoginBlocListener extends StatelessWidget {
             break;
           case const (LoginSuccess):
             Navigator.pop(context);
-            Navigator.pushReplacementNamed(context, RoutesNames.home);
+            final name = FirebaseAuth.instance.currentUser?.displayName ?? 'guest';
+            Navigator.pushReplacementNamed(
+              context,
+              RoutesNames.home,
+              arguments: name,
+            );
             break;
           case const (LoginFailure):
             final error = (state as LoginFailure).error;
