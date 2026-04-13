@@ -1,3 +1,4 @@
+import 'package:dazzling/features/auth/login/ui/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,7 +13,7 @@ class DazzlingApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Dazzling',
         debugShowCheckedModeBanner: false,
-        home: const Center(child: Text('Dazzling, Coming Soon......!')),
+        home: Center(child: LoginScreen()),
       ),
     );
   }
