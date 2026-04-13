@@ -1,7 +1,7 @@
 import 'package:dazzling/features/auth/login/ui/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'core/routing/router.dart';
 class DazzlingApp extends StatelessWidget {
   const DazzlingApp({super.key});
 
@@ -13,6 +13,7 @@ class DazzlingApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Dazzling',
         debugShowCheckedModeBanner: false,
+        onGenerateRoute: AppRouter.generateRoute,
         home: Center(child: LoginScreen()),
       ),
     );
