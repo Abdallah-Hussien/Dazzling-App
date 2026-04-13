@@ -1,4 +1,5 @@
 
+import 'package:dazzling/core/routing/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,7 +25,9 @@ class DoNotHaveAccount extends StatelessWidget {
         ),
         TextButton(
           style: TextButton.styleFrom(padding: EdgeInsets.all(2)),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(RoutesNames.register);
+          },
           child: Text(
             'Sign up',
             style: TextStyle(

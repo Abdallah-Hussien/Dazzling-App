@@ -2,6 +2,9 @@ import 'package:dazzling/core/helper/spacing.dart';
 import 'package:dazzling/core/theme/colors.dart';
 import 'package:dazzling/core/widgets/app_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../logic/cubit/login_cubit.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -15,18 +18,36 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: context.read<LoginCubit>().formKey,
       child: Column(
         children: [
           AppTextFormField(
+            controller: context.read<LoginCubit>().emailController,
             hintText: 'Email@example.com',
-            validator: (p0) {},
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your email';
+              }
+              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                  .hasMatch(value)) {
+                return 'Please enter a valid email';
+              }
+            },
             inputType: TextInputType.emailAddress,
           ),
           Spacing.vertical(16),
           AppTextFormField(
+            controller: context.read<LoginCubit>().passwordController,
             isObscureText: _obscureText,
             hintText: 'Password',
-            validator: (p0) {},
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your password';
+              }
+              if (value.length < 6) {
+                return 'Password must be at least 6 characters';
+              }
+            },
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {

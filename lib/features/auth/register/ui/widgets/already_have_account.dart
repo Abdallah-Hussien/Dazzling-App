@@ -1,13 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/routing/routes_names.dart';
 import '../../../../../core/theme/font_weight_helper.dart';
 
 class AlreadyHaveAccount extends StatelessWidget {
-  const AlreadyHaveAccount({
-    super.key,
-  });
+  const AlreadyHaveAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,9 @@ class AlreadyHaveAccount extends StatelessWidget {
         ),
         TextButton(
           style: TextButton.styleFrom(padding: EdgeInsets.all(2)),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
           child: Text(
             'Login',
             style: TextStyle(
