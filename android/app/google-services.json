@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "521038574400",
+    "project_id": "dazzling-app",
+    "storage_bucket": "dazzling-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521038574400:android:e34d20f1dc13897b3000a5",
+        "android_client_info": {
+          "package_name": "com.example.dazzling"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyAEXjkqXsOwTlCxRWDtbxOmM7U5YX_Hc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
