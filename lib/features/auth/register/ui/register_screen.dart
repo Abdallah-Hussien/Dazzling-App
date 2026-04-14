@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/routing/routes_names.dart';
+import '../../../../core/widgets/loading_layout.dart';
 import 'widgets/already_have_account.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -37,6 +38,8 @@ class RegisterScreen extends StatelessWidget {
                 backgroundColor: Colors.red,
               ),
             );
+          } else if (state is RegisterLoading){
+            LoadingLayout.setupLogin(context);
           }
         },
         builder: (context, state) {
@@ -61,11 +64,6 @@ class RegisterScreen extends StatelessWidget {
                     Spacing.vertical(60),
                     RegisterForm(),
                     Spacing.vertical(30),
-                    state is RegisterLoading ? const Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
-                      ),
-                    ) :
                     AppTextButton(
                       buttonText: 'Sign up',
                       textStyle: TextStyle(

@@ -28,6 +28,7 @@ class LoginBlocListener extends StatelessWidget {
             );
             break;
           case const (LoginFailure):
+            Navigator.pop(context);
             final error = (state as LoginFailure).error;
             ScaffoldMessenger.of(
               context,
