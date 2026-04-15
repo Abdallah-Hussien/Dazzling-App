@@ -20,7 +20,8 @@ class LoginBlocListener extends StatelessWidget {
             break;
           case const (LoginSuccess):
             Navigator.pop(context);
-            final name = FirebaseAuth.instance.currentUser?.displayName ?? 'guest';
+            final name =
+                FirebaseAuth.instance.currentUser?.displayName ?? 'guest';
             Navigator.pushReplacementNamed(
               context,
               RoutesNames.home,

@@ -1,5 +1,4 @@
 import 'package:dazzling/core/routing/routes_names.dart';
-import 'package:dazzling/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/routing/router.dart';
@@ -17,6 +16,7 @@ class DazzlingApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.generateRoute,
         initialRoute: RoutesNames.login,
+        // home: Test(),
       ),
     );
   }

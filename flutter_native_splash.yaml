@@ -1,0 +1,9 @@
+flutter_native_splash:
+# ios & android below 12
+  color: "#ffffff"
+  image: "assets/images/splash_screen.png"
+
+  android_12:
+    color: "#08431D"
+    image: "assets/images/splash12.png"
+    # 640*640 + radius 320 and inside it add logo and add it into fram 960*960
