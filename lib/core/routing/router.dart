@@ -1,4 +1,5 @@
 import 'package:dazzling/features/auth/login/logic/cubit/login_cubit.dart';
+import 'package:dazzling/features/home/logic/cubit/home_cubit.dart';
 import 'package:dazzling/features/root_screen/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,10 +28,10 @@ class AppRouter {
             child: RegisterScreen(),
           ),
         );
-        case RoutesNames.rootScreen:
+      case RoutesNames.rootScreen:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => RegisterCubit(),
+            create: (context) => HomeCubit()..getHomeCategories(),
             child: RootScreen(),
           ),
         );
