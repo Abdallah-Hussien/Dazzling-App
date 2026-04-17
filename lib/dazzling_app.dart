@@ -1,5 +1,7 @@
+import 'package:dazzling/core/routing/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/routing/router.dart';
 
 class DazzlingApp extends StatelessWidget {
   const DazzlingApp({super.key});
@@ -12,7 +14,9 @@ class DazzlingApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Dazzling',
         debugShowCheckedModeBanner: false,
-        home: const Center(child: Text('Dazzling, Coming Soon......!')),
+        onGenerateRoute: AppRouter.generateRoute,
+        initialRoute: RoutesNames.login,
+        // home: Test(),
       ),
     );
   }
