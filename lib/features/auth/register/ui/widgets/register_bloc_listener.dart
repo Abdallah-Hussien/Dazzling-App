@@ -18,6 +18,7 @@ class RegisterBlocListener extends StatelessWidget {
             LoadingLayout.setupLogin(context);
             break;
           case const (RegisterSuccess):
+            Navigator.pop(context);
             final name = FirebaseAuth.instance.currentUser?.displayName ?? '';
             Navigator.pushReplacementNamed(
               context,
@@ -26,6 +27,7 @@ class RegisterBlocListener extends StatelessWidget {
             );
             break;
           case const (RegisterFailure):
+            Navigator.pop(context);
             final failureState = state as RegisterFailure;
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
