@@ -1,4 +1,3 @@
-
 import 'package:dazzling/core/routing/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,9 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/theme/font_weight_helper.dart';
 
 class DoNotHaveAccount extends StatelessWidget {
-  const DoNotHaveAccount({
-    super.key,
-  });
+  const DoNotHaveAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +14,9 @@ class DoNotHaveAccount extends StatelessWidget {
       children: [
         Text(
           'Don\'t have an account? ',
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 16.sp,
+            fontSize: 13.sp,
             fontWeight: FontWeightHelper.regular,
             color: Colors.white,
           ),
@@ -30,8 +28,9 @@ class DoNotHaveAccount extends StatelessWidget {
           },
           child: Text(
             'Sign up',
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 13.sp,
               fontWeight: FontWeightHelper.medium,
               color: Colors.white,
             ),

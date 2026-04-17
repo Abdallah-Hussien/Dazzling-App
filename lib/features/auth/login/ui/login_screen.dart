@@ -25,8 +25,10 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Spacing.vertical(70),
+              Spacing.vertical(90),
               SvgPicture.asset('assets/svg/hungery.svg'),
+              Spacing.vertical(10),
+
               Text(
                 'Welcome back! Please login to your account.',
                 style: TextStyle(
@@ -65,4 +67,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-

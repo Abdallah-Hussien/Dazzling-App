@@ -16,24 +16,22 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (formKey.currentState!.validate()) {
       emit(RegisterLoading());
       try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        );
-        await FirebaseAuth.instance.currentUser?.updateDisplayName(
-          nameController.text.trim(),
-        );
-        Future.delayed(const Duration(seconds: 3), () {
-          emit(RegisterSuccess());
+        await Future.delayed(const Duration(seconds: 3), () async {
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailController.text.trim(),
+            password: passwordController.text.trim(),
+          );
+          await FirebaseAuth.instance.currentUser?.updateDisplayName(
+            nameController.text.trim(),
+          );
         });
-      }on FirebaseAuthException catch (e) {
-        emit(RegisterFailure(
-            error: _mapError(e.code),
-        ),
-        );
+        emit(RegisterSuccess());
+      } on FirebaseAuthException catch (e) {
+        emit(RegisterFailure(error: _mapError(e.code)));
       }
     }
   }
+
   String _mapError(String code) {
     switch (code) {
       case 'email-already-in-use':

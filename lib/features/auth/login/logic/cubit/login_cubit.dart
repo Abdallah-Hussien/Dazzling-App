@@ -13,10 +13,12 @@ class LoginCubit extends Cubit<LoginState> {
   emitLoginStates() async {
     emit(LoginLoading());
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
+      await Future.delayed(Duration(seconds: 3), () async {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+      });
       emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {
       emit(LoginFailure(error: _mapError(e.code)));
