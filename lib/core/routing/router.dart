@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/auth/login/ui/login_screen.dart';
+import '../../features/auth/register/logic/register_cubit.dart';
 import '../../features/auth/register/ui/register_screen.dart';
 import '../../features/home/ui/home_Screen.dart';
 import 'routes_names.dart';
@@ -10,9 +11,6 @@ import 'routes_names.dart';
 class AppRouter {
   AppRouter._();
   static Route? generateRoute(RouteSettings settings) {
-    //this arguments to be passed in any screen like this ( arguments as ClassName )
-    // final arguments = settings.arguments;
-
     switch (settings.name) {
       case RoutesNames.login:
         return MaterialPageRoute(
@@ -22,12 +20,19 @@ class AppRouter {
           ),
         );
       case RoutesNames.register:
-        return MaterialPageRoute(builder: (context) => const RegisterScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => RegisterCubit(),
+            child: RegisterScreen(),
+          ),
+        );
       case RoutesNames.home:
-        return MaterialPageRoute(builder: (context) {
-          final name = settings.arguments as String? ?? "guest";
-           return HomeScreen(name: name);
-        });
+        return MaterialPageRoute(
+          builder: (context) {
+            final name = settings.arguments as String? ?? "guest";
+            return HomeScreen(name: name);
+          },
+        );
       default:
         return null;
     }

@@ -4,7 +4,6 @@ import 'package:dazzling/features/auth/login/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../logic/cubit/login_cubit.dart';
 
 class LoginBlocListener extends StatelessWidget {

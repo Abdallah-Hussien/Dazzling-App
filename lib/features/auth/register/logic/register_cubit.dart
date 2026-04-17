@@ -27,7 +27,10 @@ class RegisterCubit extends Cubit<RegisterState> {
           emit(RegisterSuccess());
         });
       }on FirebaseAuthException catch (e) {
-        emit(RegisterFailure(error: _mapError(e.code)));
+        emit(RegisterFailure(
+            error: _mapError(e.code),
+        ),
+        );
       }
     }
   }
