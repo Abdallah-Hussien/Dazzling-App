@@ -5,10 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'selected_category_gridview_item.dart';
 
 class SelectedCategoryGridView extends StatelessWidget {
-  const SelectedCategoryGridView({
-    super.key,
-    required this.products,
-  });
+  const SelectedCategoryGridView({super.key, required this.products});
 
   final List<MealModel> products;
 
@@ -20,9 +17,9 @@ class SelectedCategoryGridView extends StatelessWidget {
         itemCount: products.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          mainAxisSpacing: 20.h,
-          crossAxisSpacing: 19.w,
-          childAspectRatio: 2.13 / 3,
+          mainAxisSpacing: 22.h,
+          crossAxisSpacing: 10.w,
+          childAspectRatio: .68,
         ),
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -33,9 +30,7 @@ class SelectedCategoryGridView extends StatelessWidget {
               //   extra: products[index],
               // );
             },
-            child: SelectedCategoryGridViewItem(
-              product: products[index],
-            ),
+            child: SelectedCategoryGridViewItem(product: products[index]),
           );
         },
       ),

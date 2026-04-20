@@ -19,12 +19,11 @@ class _CategoriesListState extends State<CategoriesList> {
     return SizedBox(
       height: 60.h,
       child: ListView.builder(
-        
         padding: EdgeInsets.symmetric(vertical: 7.h),
         scrollDirection: Axis.horizontal,
         itemCount: widget.categories.length, // Replace with actual item count
         itemBuilder: (context, index) {
-          return InkWell(
+          return GestureDetector(
             onTap: () {
               setState(() {
                 selectedCategoryIndex = index;
