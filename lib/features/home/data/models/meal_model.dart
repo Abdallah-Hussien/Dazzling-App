@@ -1,3 +1,6 @@
+
+import 'dart:convert';
+
 class MealModel {
   final String? id;
   final String? name;
@@ -8,10 +11,39 @@ class MealModel {
   MealModel({
     required this.id,
     required this.name,
-    required this.description,
-    required this.price,
+    this.description,
+    this.price,
     required this.imageUrl,
   });
+
+
+  MealModel copyWith({
+    String? id,
+    String? name,
+    String? description,
+    double? price,
+    String? imageUrl,
+  }) {
+    return MealModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      imageUrl: imageUrl ?? this.imageUrl,
+    );
+  }
+
+
+  factory MealModel.fromMap(Map<String, dynamic> map) {
+    return MealModel(
+      id: map['idMeal'] != null ? map['idMeal'] as String : null,
+      name: map['strMeal'] != null ? map['strMeal'] as String : null,
+      imageUrl: map['strMealThumb'] != null ? map['strMealThumb'] as String : null,
+    );
+  }
+
+  factory MealModel.fromJson(String source) => MealModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
 }
 
 final List<MealModel> meals = [

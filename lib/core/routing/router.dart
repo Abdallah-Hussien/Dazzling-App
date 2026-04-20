@@ -1,3 +1,4 @@
+import 'package:dazzling/core/di/dependancy_injection.dart';
 import 'package:dazzling/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:dazzling/features/home/logic/cubit/home_cubit.dart';
 import 'package:dazzling/features/root_screen/root_screen.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/auth/login/ui/login_screen.dart';
 import '../../features/auth/register/logic/register_cubit.dart';
 import '../../features/auth/register/ui/register_screen.dart';
+import '../../features/home/data/repo/home_repo.dart';
 import '../../features/home/ui/home_Screen.dart';
 import 'routes_names.dart';
 
@@ -31,7 +33,8 @@ class AppRouter {
       case RoutesNames.rootScreen:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => HomeCubit()..getHomeCategories(),
+            create: (context) =>
+                HomeCubit(homeRepo: getIt<HomeRepo>())..getHomeCategories(),
             child: RootScreen(),
           ),
         );

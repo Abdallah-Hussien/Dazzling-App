@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // import '../../../logic/cubit/home_cubit.dart';
+import '../../../logic/cubit/home_cubit.dart';
 import 'categories_list_item.dart';
 
 class CategoriesList extends StatefulWidget {
@@ -28,9 +30,9 @@ class _CategoriesListState extends State<CategoriesList> {
               setState(() {
                 selectedCategoryIndex = index;
               });
-              // context.read<HomeCubit>().getProductsByCategory(
-              //       categoryId: selectedCategoryIndex,
-              //     );
+              context.read<HomeCubit>().getSelectedCategoryProducts(
+                widget.categories[index],
+              );
             },
             child: CategoriesListItem(
               selectedCategoryIndex: selectedCategoryIndex,

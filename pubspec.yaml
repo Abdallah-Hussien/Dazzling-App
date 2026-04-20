@@ -41,11 +41,13 @@ dependencies:
   flutter_secure_storage: ^10.0.0
   flutter_svg: ^2.0.9
   get_it: ^9.2.1
+  json_annotation: ^4.11.0
+  json_serializable: ^6.13.1
   lottie: ^3.3.3
   pretty_dio_logger: ^1.4.0
   shared_preferences: ^2.2.3
   shimmer: ^3.0.0
-  
+
 dev_dependencies:
   flutter_lints: ^6.0.0
   flutter_test:
