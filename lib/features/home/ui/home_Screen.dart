@@ -10,6 +10,8 @@ import 'widgets/categories_list/categories_bloc_builder.dart';
 import 'widgets/custom_search.dart';
 import 'widgets/selected_category/selected_categories_bloc_builder.dart';
 
+import '../../../core/routing/routes_names.dart';
+
 class HomeScreen extends StatelessWidget {
   final String name;
   const HomeScreen({super.key, required this.name});
