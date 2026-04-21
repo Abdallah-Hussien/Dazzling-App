@@ -12,10 +12,12 @@ class AppTextFormField extends StatelessWidget {
   final String hintText;
   final bool? isObscureText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
   final TextInputType? inputType;
+  final double? radius;
   const AppTextFormField({
     super.key,
     this.contentPadding,
@@ -26,10 +28,12 @@ class AppTextFormField extends StatelessWidget {
     required this.hintText,
     this.isObscureText,
     this.suffixIcon,
+    this.prefixIcon,
     this.backgroundColor,
     this.controller,
     required this.validator,
     this.inputType,
+    this.radius,
   });
 
   @override
@@ -37,7 +41,9 @@ class AppTextFormField extends StatelessWidget {
     return TextFormField(
       keyboardType: inputType,
       controller: controller,
+    
       decoration: InputDecoration(
+    
         isDense: true,
         contentPadding:
             contentPadding ??
@@ -46,7 +52,7 @@ class AppTextFormField extends StatelessWidget {
             focusedBorder ??
             OutlineInputBorder(
               borderSide: BorderSide(color: ColorsManager.white, width: 1.3),
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(radius ?? 8.0),
             ),
         enabledBorder:
             enabledBorder ??
@@ -55,7 +61,7 @@ class AppTextFormField extends StatelessWidget {
                 color: ColorsManager.white,
                 width: 1.3,
               ),
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(radius ?? 8.0),
             ),
         errorStyle: TextStyle(
           color: const Color.fromARGB(255, 150, 216, 155),
@@ -63,14 +69,15 @@ class AppTextFormField extends StatelessWidget {
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(radius ?? 8.0),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(radius ?? 8.0),
         ),
-        hintStyle: hintStyle ?? null,
+        hintStyle: hintStyle ,
         hintText: hintText,
+        prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         // suffixIconColor: ,
         fillColor: backgroundColor ?? ColorsManager.white,
