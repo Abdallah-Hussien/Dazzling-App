@@ -1,4 +1,4 @@
-import 'package:dazzling/features/home/product/ui/widgets/spicy_slider.dart';
+import 'package:dazzling/features/product/ui/widgets/spicy_slider.dart';
 import 'package:flutter/material.dart';
 
 class ProductTopSection extends StatelessWidget {

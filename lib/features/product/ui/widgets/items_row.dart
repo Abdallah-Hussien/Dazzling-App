@@ -1,4 +1,4 @@
-import 'package:dazzling/features/home/product/ui/widgets/item_card.dart';
+import 'package:dazzling/features/product/ui/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../logic/models/topping_item.dart';

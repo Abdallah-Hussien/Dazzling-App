@@ -1,8 +1,8 @@
-import 'package:dazzling/features/home/product/ui/widgets/items_row.dart';
-import 'package:dazzling/features/home/product/ui/widgets/product_bottom_bar.dart';
-import 'package:dazzling/features/home/product/ui/widgets/product_header.dart';
-import 'package:dazzling/features/home/product/ui/widgets/product_top_section.dart';
-import 'package:dazzling/features/home/product/ui/widgets/spicy_slider.dart';
+import 'package:dazzling/features/product/ui/widgets/items_row.dart';
+import 'package:dazzling/features/product/ui/widgets/product_bottom_bar.dart';
+import 'package:dazzling/features/product/ui/widgets/product_header.dart';
+import 'package:dazzling/features/product/ui/widgets/product_top_section.dart';
+import 'package:dazzling/features/product/ui/widgets/spicy_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../logic/models/topping_item.dart';
