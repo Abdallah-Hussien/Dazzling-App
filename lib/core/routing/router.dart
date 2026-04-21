@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/auth/login/ui/login_screen.dart';
 import '../../features/auth/register/logic/register_cubit.dart';
 import '../../features/auth/register/ui/register_screen.dart';
+import '../../features/home/product/logic/cubit/product_cubit.dart';
+import '../../features/home/product/ui/product_screen.dart';
 import '../../features/home/ui/home_Screen.dart';
 import 'routes_names.dart';
 
@@ -32,6 +34,13 @@ class AppRouter {
             final name = settings.arguments as String? ?? "guest";
             return HomeScreen(name: name);
           },
+        );
+      case RoutesNames.product:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => ProductCubit(),
+            child: const ProductScreen(),
+          ),
         );
       default:
         return null;
