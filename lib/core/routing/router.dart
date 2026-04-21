@@ -51,7 +51,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => ProductCubit(),
-            child: const ProductScreen(),
+            child: ProductScreen(product: settings.arguments as dynamic),
           ),
         );
       default:

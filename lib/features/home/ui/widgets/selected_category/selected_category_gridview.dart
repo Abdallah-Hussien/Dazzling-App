@@ -2,6 +2,7 @@ import 'package:dazzling/features/home/data/models/meal_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/routing/routes_names.dart';
 import 'selected_category_gridview_item.dart';
 
 class SelectedCategoryGridView extends StatelessWidget {
@@ -24,11 +25,11 @@ class SelectedCategoryGridView extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              // Handle tap event
-              // context.pushNamed(
-              //   RoutesNames.productDetails,
-              //   extra: products[index],
-              // );
+              Navigator.pushNamed(
+                context,
+                RoutesNames.product,
+                arguments: products[index],
+              );
             },
             child: SelectedCategoryGridViewItem(product: products[index]),
           );

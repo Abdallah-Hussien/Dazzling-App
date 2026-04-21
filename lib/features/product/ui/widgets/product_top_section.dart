@@ -1,6 +1,8 @@
 import 'package:dazzling/features/product/ui/widgets/spicy_slider.dart';
 import 'package:flutter/material.dart';
 
+import '../../../home/data/models/meal_model.dart';
+
 class ProductTopSection extends StatelessWidget {
   final SpicyLevel spicyLevel;
   final ValueChanged<SpicyLevel> onSpicyChanged;
@@ -9,8 +11,9 @@ class ProductTopSection extends StatelessWidget {
     super.key,
     required this.spicyLevel,
     required this.onSpicyChanged,
+    required this.product,
   });
-
+  final MealModel product;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,10 +22,7 @@ class ProductTopSection extends StatelessWidget {
         SizedBox(
           height: 220,
           width: 160,
-          child: Image.asset(
-            'assets/images/burger.png',
-            fit: BoxFit.contain,
-          ),
+          child: Image.network(product.imageUrl ?? '', fit: BoxFit.contain),
         ),
         const SizedBox(width: 12),
         Expanded(
@@ -30,10 +30,10 @@ class ProductTopSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RichText(
-                text: const TextSpan(
+                text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'Customize ',
+                      text: product.name ?? '',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -53,10 +53,7 @@ class ProductTopSection extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              SpicySlider(
-                initialLevel: spicyLevel,
-                onChanged: onSpicyChanged,
-              ),
+              SpicySlider(initialLevel: spicyLevel, onChanged: onSpicyChanged),
             ],
           ),
         ),

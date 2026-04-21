@@ -9,13 +9,6 @@ class ProductHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 12),
-        Text(
-          'product details',
-          style: TextStyle(
-            fontSize: 13,
-            color: Colors.grey.shade500,
-          ),
-        ),
         const SizedBox(height: 8),
         GestureDetector(
           onTap: () => Navigator.pop(context),
