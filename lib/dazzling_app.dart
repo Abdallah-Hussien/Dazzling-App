@@ -15,7 +15,7 @@ class DazzlingApp extends StatelessWidget {
         title: 'Dazzling',
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.generateRoute,
-        initialRoute: RoutesNames.rootScreen,
+        initialRoute: RoutesNames.login,
         // home: Test(),
       ),
     );

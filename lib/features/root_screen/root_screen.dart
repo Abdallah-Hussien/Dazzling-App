@@ -1,6 +1,5 @@
 import 'package:dazzling/features/home/ui/home_Screen.dart';
 import 'package:flutter/material.dart';
-import '../checkout/ui/checkout_screen.dart';
 import '../cart/ui/cart_screen.dart';
 import 'widgets/custom_bottom_navigation.dart';
 
