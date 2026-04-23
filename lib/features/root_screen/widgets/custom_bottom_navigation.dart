@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,35 +25,45 @@ class CustomBottomNavigation extends StatelessWidget {
           topRight: Radius.circular(20),
         ),
       ),
-      child: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: onTap,
-        elevation: 0,
-        backgroundColor: ColorsManager.primary,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white.withOpacity(0.5),
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        iconSize: 24.sp,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.cart),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.person),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.conversation_bubble),
-            label: 'Messages',
-          ),
-        ],
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          splashFactory: NoSplash.splashFactory,
+        ),
+        child: BottomNavigationBar(
+          useLegacyColorScheme: false,
+          currentIndex: _selectedIndex,
+          onTap: onTap,
+          elevation: 0,
+          backgroundColor: ColorsManager.primary,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white.withOpacity(0.5),
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          iconSize: 24.sp,
+          items: const [
+            BottomNavigationBarItem(
+              backgroundColor: Colors.transparent,
+              icon: Icon(CupertinoIcons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: Colors.transparent,
+              icon: Icon(CupertinoIcons.cart),
+              label: 'Cart',
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: Colors.transparent,
+              icon: Icon(CupertinoIcons.person),
+              label: 'Profile',
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: Colors.transparent,
+              icon: Icon(CupertinoIcons.conversation_bubble),
+              label: 'Messages',
+            ),
+          ],
+        ),
       ),
     );
   }

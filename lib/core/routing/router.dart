@@ -40,7 +40,7 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) =>
-                    HomeCubit(homeRepo: getIt<HomeRepo>())..getHomeCategories(),
+                    getIt<HomeCubit>()..getHomeCategories(),
               ),
               BlocProvider(create: (context) => getIt<CartCubit>()),
             ],

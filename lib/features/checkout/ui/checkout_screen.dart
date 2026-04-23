@@ -59,10 +59,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       onPressed: () {
                         showDialog(
                           barrierDismissible: false,
+                          barrierColor: Color(0xFFBCBBBB),
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              backgroundColor: Color(0xFFBCBBBB),
+                              backgroundColor: Colors.white,
                               title: Text('Checkout'),
                               content: Lottie.asset(
                                 'assets/lottie/shopping_cart.json',

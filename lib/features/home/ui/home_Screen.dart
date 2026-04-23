@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Spacing.vertical(30),
+            Spacing.vertical(50),
             SvgPicture.asset(
               'assets/svg/hungery.svg',
               color: ColorsManager.primary,

@@ -22,7 +22,7 @@ class RegisterBlocListener extends StatelessWidget {
             final name = FirebaseAuth.instance.currentUser?.displayName ?? '';
             Navigator.pushReplacementNamed(
               context,
-              RoutesNames.home,
+              RoutesNames.rootScreen,
               arguments: name,
             );
             break;

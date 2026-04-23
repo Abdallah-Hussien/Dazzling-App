@@ -34,7 +34,7 @@ class SelectedCategoryGridViewItem extends StatelessWidget {
                       highlightColor: Colors.white,
                       child: const SizedBox(
                         width: double.infinity,
-                        height: 150,
+                        height: 110,
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                             color: Colors.grey,

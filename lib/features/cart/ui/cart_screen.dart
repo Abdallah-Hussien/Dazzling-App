@@ -23,23 +23,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black, size: 22.sp),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          'Cart',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20.sp,
-            fontWeight: FontWeightHelper.bold,
-          ),
-        ),
-      ),
-      body: BlocBuilder<CartCubit, CartState>(
+     body: BlocBuilder<CartCubit, CartState>(
         builder: (context, state) {
           if (context.read<CartCubit>().cartItems.isEmpty) {
             return Center(
@@ -55,6 +39,7 @@ class _CartScreenState extends State<CartScreen> {
             var cartlist = context.watch<CartCubit>().cartItems;
             return Column(
               children: [
+                Spacing.vertical(40),
                 Expanded(
                   child: ListView.separated(
                     padding: EdgeInsets.symmetric(
