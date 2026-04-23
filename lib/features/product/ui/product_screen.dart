@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dazzling/features/home/data/models/meal_model.dart';
 import 'package:dazzling/features/product/ui/widgets/items_row.dart';
 import 'package:dazzling/features/product/ui/widgets/product_bottom_bar.dart';
@@ -5,7 +7,9 @@ import 'package:dazzling/features/product/ui/widgets/product_header.dart';
 import 'package:dazzling/features/product/ui/widgets/product_top_section.dart';
 import 'package:dazzling/features/product/ui/widgets/spicy_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../cart/logic/cart_cubit.dart';
 import '../logic/models/topping_item.dart';
 
 // ─── Order data sent on Add To Cart ──────────────────────────────────────────
@@ -15,22 +19,15 @@ class ProductOrder {
   final List<ToppingItem> selectedSides;
   final SpicyLevel spicyLevel;
   final double totalPrice;
+  final MealModel? meal;
 
   const ProductOrder({
     required this.selectedToppings,
     required this.selectedSides,
     required this.spicyLevel,
     required this.totalPrice,
+    this.meal ,
   });
-
-  @override
-  String toString() {
-    return 'ProductOrder('
-        'toppings: ${selectedToppings.map((e) => e.name).toList()}, '
-        'sides: ${selectedSides.map((e) => e.name).toList()}, '
-        'spicy: ${spicyLevel.label}, '
-        'total: \$${totalPrice.toStringAsFixed(2)})';
-  }
 }
 
 // ─── Screen ───────────────────────────────────────────────────────────────────
@@ -107,21 +104,7 @@ class _ProductScreenState extends State<ProductScreen> {
     final sideSum = _sideOptions
         .where((s) => s.selected)
         .fold(0.0, (sum, s) => sum + s.price);
-    return widget.basePrice + toppingSum + sideSum;
-  }
-
-  void _handleAddToCart() {
-    final order = ProductOrder(
-      selectedToppings: _toppings.where((t) => t.selected).toList(),
-      selectedSides: _sideOptions.where((s) => s.selected).toList(),
-      spicyLevel: _spicyLevel,
-      totalPrice: _totalPrice,
-    );
-
-    widget.onOrderPlaced?.call(order);
-
-    // Debug print
-    debugPrint(order.toString());
+    return widget.product.price! + toppingSum + sideSum;
   }
 
   @override
@@ -167,12 +150,28 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
             ),
             ProductBottomBar(
-              totalPrice: widget.product.price ?? _totalPrice,
+              totalPrice: _totalPrice,
               onAddToCart: _handleAddToCart,
             ),
           ],
         ),
       ),
+    );
+  }
+  void _handleAddToCart() {
+    final order = ProductOrder(
+      selectedToppings: _toppings.where((t) => t.selected).toList(),
+      selectedSides: _sideOptions.where((s) => s.selected).toList(),
+      spicyLevel: _spicyLevel,
+      totalPrice: _totalPrice,
+      meal: widget.product,
+    );
+    context.read<CartCubit>().addToCart(order);
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Added to Card Successfully')));
+    log(
+      "Order placed: Toppings: ${order.selectedToppings.map((t) => t.name).join(', ')}, Sides: ${order.selectedSides.map((s) => s.name).join(', ')}, Spicy Level: ${order.spicyLevel}, Total Price: \$${order.totalPrice.toStringAsFixed(2)}",
     );
   }
 }

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 class MealModel {
@@ -7,6 +6,7 @@ class MealModel {
   final String? description;
   final double? price;
   final String? imageUrl;
+  int quantity;
 
   MealModel({
     required this.id,
@@ -14,8 +14,8 @@ class MealModel {
     this.description,
     this.price,
     required this.imageUrl,
+    this.quantity = 1,
   });
-
 
   MealModel copyWith({
     String? id,
@@ -33,17 +33,18 @@ class MealModel {
     );
   }
 
-
   factory MealModel.fromMap(Map<String, dynamic> map) {
     return MealModel(
       id: map['idMeal'] != null ? map['idMeal'] as String : null,
       name: map['strMeal'] != null ? map['strMeal'] as String : null,
-      imageUrl: map['strMealThumb'] != null ? map['strMealThumb'] as String : null,
+      imageUrl: map['strMealThumb'] != null
+          ? map['strMealThumb'] as String
+          : null,
     );
   }
 
-  factory MealModel.fromJson(String source) => MealModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
+  factory MealModel.fromJson(String source) =>
+      MealModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 final List<MealModel> meals = [

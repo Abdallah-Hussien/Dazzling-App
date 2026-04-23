@@ -1,5 +1,6 @@
 import 'package:dazzling/core/di/dependancy_injection.dart';
 import 'package:dazzling/features/auth/login/logic/cubit/login_cubit.dart';
+import 'package:dazzling/features/cart/logic/cart_cubit.dart';
 import 'package:dazzling/features/home/logic/cubit/home_cubit.dart';
 import 'package:dazzling/features/root_screen/root_screen.dart';
 import 'package:flutter/material.dart';
@@ -34,9 +35,14 @@ class AppRouter {
         );
       case RoutesNames.rootScreen:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                HomeCubit(homeRepo: getIt<HomeRepo>())..getHomeCategories(),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) =>
+                    HomeCubit(homeRepo: getIt<HomeRepo>())..getHomeCategories(),
+              ),
+              BlocProvider(create: (context) => getIt<CartCubit>()),
+            ],
             child: RootScreen(),
           ),
         );
@@ -49,8 +55,11 @@ class AppRouter {
         );
       case RoutesNames.product:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => ProductCubit(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => ProductCubit()),
+              BlocProvider.value(value: getIt<CartCubit>()),
+            ],
             child: ProductScreen(product: settings.arguments as dynamic),
           ),
         );

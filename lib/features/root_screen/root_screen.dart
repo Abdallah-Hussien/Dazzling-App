@@ -1,6 +1,7 @@
 import 'package:dazzling/features/home/ui/home_Screen.dart';
 import 'package:flutter/material.dart';
-
+import '../checkout/ui/checkout_screen.dart';
+import '../cart/ui/cart_screen.dart';
 import 'widgets/custom_bottom_navigation.dart';
 
 class RootScreen extends StatefulWidget {
@@ -13,8 +14,8 @@ class RootScreen extends StatefulWidget {
 class _RootScreenState extends State<RootScreen> {
   final List<Widget> _screens = [
     HomeScreen(name: 'name'),
-    Center(child: Text('Cart Screen')),
-    Center(child: Text('Profile Screen')),
+    CartScreen(),
+    MohamedScreen(),
     Center(child: Text('Messages Screen')),
   ];
 

@@ -1,3 +1,4 @@
+import 'package:dazzling/features/cart/logic/cart_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import '../../features/home/data/repo/home_repo.dart';
@@ -19,5 +20,10 @@ Future<void> setupGetIt() async {
   // HomeCubit dependency
   getIt.registerFactory<HomeCubit>(
     () => HomeCubit(homeRepo: getIt<HomeRepo>()),
+  );
+
+    // CartCubit dependency
+  getIt.registerLazySingleton<CartCubit>(
+    () => CartCubit(),
   );
 }
