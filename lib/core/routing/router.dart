@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/auth/login/ui/login_screen.dart';
 import '../../features/auth/register/logic/register_cubit.dart';
 import '../../features/auth/register/ui/register_screen.dart';
+import '../../features/checkout/ui/checkout_screen.dart';
 import '../../features/product/logic/cubit/product_cubit.dart';
 import '../../features/product/ui/product_screen.dart';
 import '../../features/home/data/repo/home_repo.dart';
@@ -61,6 +62,13 @@ class AppRouter {
               BlocProvider.value(value: getIt<CartCubit>()),
             ],
             child: ProductScreen(product: settings.arguments as dynamic),
+          ),
+        );
+      case RoutesNames.checkout:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: getIt<CartCubit>(),
+            child: CheckOutScreen(),
           ),
         );
       default:

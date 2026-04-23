@@ -15,7 +15,7 @@ class _RootScreenState extends State<RootScreen> {
   final List<Widget> _screens = [
     HomeScreen(name: 'name'),
     CartScreen(),
-    MohamedScreen(),
+    Center(child: Text('Profile Screen')),
     Center(child: Text('Messages Screen')),
   ];
 

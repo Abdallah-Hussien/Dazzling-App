@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/routing/routes_names.dart';
 import '../../../core/theme/colors.dart';
 import '../../../core/theme/font_weight_helper.dart';
 import '../../../core/helper/spacing.dart';
@@ -237,7 +238,7 @@ class _CartScreenState extends State<CartScreen> {
           Expanded(
             child: ElevatedButton(
               onPressed: () {
-                // Navigate to Checkout
+                Navigator.pushNamed(context, RoutesNames.checkout);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorsManager.primary,

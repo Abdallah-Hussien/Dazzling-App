@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../core/theme/colors.dart';
 import '../../../core/theme/font_weight_helper.dart';
 import '../../../core/helper/spacing.dart';
+import '../../cart/logic/cart_cubit.dart';
 
-class MohamedScreen extends StatefulWidget {
-  const MohamedScreen({super.key});
+class CheckOutScreen extends StatefulWidget {
+  const CheckOutScreen({super.key});
 
   @override
-  State<MohamedScreen> createState() => _MohamedScreenState();
+  State<CheckOutScreen> createState() => _CheckOutScreenState();
 }
 
-class _MohamedScreenState extends State<MohamedScreen> {
+class _CheckOutScreenState extends State<CheckOutScreen> {
   int _selectedPayment = 0; // 0 = Cash on Delivery, 1 = Debit card
   bool _saveCard = false;
 
@@ -48,7 +51,46 @@ class _MohamedScreenState extends State<MohamedScreen> {
                   _buildOrderSummarySection(),
                   Spacing.vertical(24),
                   _buildPaymentMethodsSection(),
-                  Spacing.vertical(16),
+                  Spacing.vertical(36),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 58.h,
+                    child: TextButton(
+                      onPressed: () {
+                        showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              backgroundColor: Color(0xFFBCBBBB),
+                              title: Text('Checkout'),
+                              content: Lottie.asset(
+                                'assets/lottie/shopping_cart.json',
+                                width: 150,
+                                height: 150,
+                              ),
+                            );
+                          },
+                        );
+                        Future.delayed(Duration(milliseconds: 2260), () {
+                          Navigator.of(context).pop();
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: ColorsManager.primary,
+                        foregroundColor: Colors.white,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 24.w,
+                          vertical: 14.h,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
+                      ),
+                      child: Text('Order Now'),
+                    ),
+                  ),
+                  Spacing.vertical(26),
                 ],
               ),
             ),
@@ -80,7 +122,10 @@ class _MohamedScreenState extends State<MohamedScreen> {
             ),
           ),
           Spacing.vertical(12),
-          _buildSummaryRow('Order', '\$16.48'),
+          _buildSummaryRow(
+            'Order',
+            '\$${context.watch<CartCubit>().total.toStringAsFixed(2)}',
+          ),
           Spacing.vertical(8),
           _buildSummaryRow('Taxes', '\$0.3'),
           Spacing.vertical(8),
@@ -88,7 +133,11 @@ class _MohamedScreenState extends State<MohamedScreen> {
           Spacing.vertical(12),
           const Divider(color: Color(0xFFEEEEEE), thickness: 1),
           Spacing.vertical(12),
-          _buildSummaryRow('Total:', '\$18.19', isBold: true),
+          _buildSummaryRow(
+            'Total:',
+            '\$${(context.watch<CartCubit>().total + 1.8).toStringAsFixed(2)}',
+            isBold: true,
+          ),
           Spacing.vertical(10),
           Row(
             children: [
@@ -128,7 +177,9 @@ class _MohamedScreenState extends State<MohamedScreen> {
           label,
           style: TextStyle(
             fontSize: isBold ? 15.sp : 13.sp,
-            fontWeight: isBold ? FontWeightHelper.bold : FontWeightHelper.regular,
+            fontWeight: isBold
+                ? FontWeightHelper.bold
+                : FontWeightHelper.regular,
             color: isBold ? Colors.black : const Color(0xFF666666),
           ),
         ),
@@ -136,7 +187,9 @@ class _MohamedScreenState extends State<MohamedScreen> {
           value,
           style: TextStyle(
             fontSize: isBold ? 15.sp : 13.sp,
-            fontWeight: isBold ? FontWeightHelper.bold : FontWeightHelper.regular,
+            fontWeight: isBold
+                ? FontWeightHelper.bold
+                : FontWeightHelper.regular,
             color: isBold ? Colors.black : const Color(0xFF666666),
           ),
         ),
@@ -176,7 +229,9 @@ class _MohamedScreenState extends State<MohamedScreen> {
           color: isSelected ? const Color(0xFF1E2923) : Colors.white,
           borderRadius: BorderRadius.circular(12.r),
           border: Border.all(
-            color: isSelected ? const Color(0xFF1E2923) : const Color(0xFFEEEEEE),
+            color: isSelected
+                ? const Color(0xFF1E2923)
+                : const Color(0xFFEEEEEE),
           ),
         ),
         child: Row(
@@ -254,7 +309,9 @@ class _MohamedScreenState extends State<MohamedScreen> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(12.r),
               border: Border.all(
-                color: isSelected ? ColorsManager.primary : const Color(0xFFEEEEEE),
+                color: isSelected
+                    ? ColorsManager.primary
+                    : const Color(0xFFEEEEEE),
               ),
             ),
             child: Row(
@@ -309,7 +366,9 @@ class _MohamedScreenState extends State<MohamedScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: isSelected ? ColorsManager.primary : const Color(0xFFCCCCCC),
+                      color: isSelected
+                          ? ColorsManager.primary
+                          : const Color(0xFFCCCCCC),
                       width: 2,
                     ),
                   ),
@@ -362,66 +421,6 @@ class _MohamedScreenState extends State<MohamedScreen> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildBottomBar() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          top: BorderSide(color: const Color(0xFFEEEEEE), width: 1),
-        ),
-      ),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Total price',
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  color: const Color(0xFF888888),
-                ),
-              ),
-              Text(
-                '\$18.19',
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeightHelper.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(width: 16.w),
-          Expanded(
-            child: ElevatedButton(
-              onPressed: () {
-                // Handle Pay Now
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorsManager.primary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.r),
-                ),
-                padding: EdgeInsets.symmetric(vertical: 14.h),
-              ),
-              child: Text(
-                'Pay Now',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15.sp,
-                  fontWeight: FontWeightHelper.semiBold,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
